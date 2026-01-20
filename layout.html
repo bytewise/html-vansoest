@@ -57,16 +57,29 @@
                     </ul>
                     <script>
                       // Highlight active nav item by adding 'menu-active' class to matching link
+                      // This normalizes both the current path and link hrefs to their base name (without .html)
                       (function(){
                         try{
-                          var path = location.pathname.split('/').pop() || 'index.html';
-                          var name = path === '' ? 'index.html' : path;
+                          var path = location.pathname.replace(/\/$/,'').split('/').pop();
+                          if(!path) path = 'index';
+
+                          var normalize = function(href){
+                            if(!href) return '';
+                            // remove any leading ./
+                            href = href.replace(/^\.\//,'');
+                            // strip trailing slash
+                            href = href.replace(/\/$/,'');
+                            // remove .html extension
+                            href = href.replace(/\.html$/,'');
+                            return href;
+                          };
+
                           var links = document.querySelectorAll('.nav-menu a');
                           for(var i=0;i<links.length;i++){
                             var a = links[i];
                             var href = a.getAttribute('href');
-                            if(!href) continue;
-                            if(href === name || href === ('./'+name) || (name==='index.html' && href==='index.html')){
+                            var n = normalize(href);
+                            if(n === path){
                               a.classList.add('menu-active');
                             }
                           }
