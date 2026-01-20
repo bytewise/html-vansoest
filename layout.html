@@ -217,8 +217,13 @@
      * and initializes parallax for dynamically loaded content.
      */
     (function() {
-      var p = location.pathname.split('/').pop() || 'index.html';
-      var name = p === '' ? 'index' : p.replace('.html', '');
+      // Determine page name from original URL. If this layout was loaded via a stub
+      // that did document.write(layout.html), location.pathname will be the stub path (e.g. /renovatie/)
+      // Prefer the current location.pathname (the stub path). If layout was opened directly (/layout.html),
+      // fall back to document.referrer or root.
+      var requestedPath = (location.pathname && location.pathname !== '/layout.html') ? location.pathname : (document.referrer ? (new URL(document.referrer, location.href)).pathname : '/');
+      var segments = requestedPath.split('/').filter(function(s){ return s.length>0; });
+      var name = segments.length ? segments[segments.length-1].replace(/\.html$/,'') : 'index';
       var url = '/pages/' + name + '.content.html';
 
       function initParallax() {

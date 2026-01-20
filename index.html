@@ -6,9 +6,12 @@
     <title>van Soest bouw</title>
     <script>
       (function(){
-        fetch('layout.html')
+        fetch('/layout.html')
           .then(function(r){ if(!r.ok) throw new Error('layout fetch failed'); return r.text(); })
-          .then(function(html){ document.open(); document.write(html); document.close(); })
+          .then(function(html){
+            document.open(); document.write(html); document.close();
+            try{ history.replaceState({}, '', '/'); }catch(e){}
+          })
           .catch(function(e){ console.error(e); document.body.innerHTML = '<p>Could not load layout.</p>'; });
       })();
     </script>

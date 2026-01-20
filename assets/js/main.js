@@ -35,10 +35,7 @@ $(document).ready(function(){
 
   // Initiate superfish on nav menu
   $('.nav-menu').superfish({
-    animation: {
-      opacity: 'show'
-    },
-    speed: 400
+    speed: 0
   });
 
   // Mobile Navigation
@@ -73,7 +70,7 @@ $(document).ready(function(){
         if ($('body').hasClass('mobile-nav-active')) {
           $('body').removeClass('mobile-nav-active');
           $('#mobile-nav-toggle i').toggleClass('lnr-cross lnr-menu');
-          $('#mobile-body-overly').fadeOut();
+          $('#mobile-body-overly').hide();
         }
       }
     });
@@ -108,7 +105,7 @@ $(document).ready(function(){
         if ($('body').hasClass('mobile-nav-active')) {
           $('body').removeClass('mobile-nav-active');
           $('#mobile-nav-toggle i').toggleClass('lnr-times lnr-bars');
-          $('#mobile-body-overly').fadeOut();
+          $('#mobile-body-overly').hide();
         }
         return false;
       }

@@ -1934,8 +1934,11 @@ h6 {
 }
 
 #header.header-scrolled {
-  transition: all 0.5s;
+  transition: none;
 }
+
+/* Disable header/nav transitions for instant page switches */
+#header, #nav-menu-container, .nav-menu, .nav-menu a, .navbar-menu { transition: none !important; }
 
 
 #logo {
@@ -2087,7 +2090,7 @@ h6 {
 }
 
 .nav-menu ul li {
-  transition: 0.3s;
+  transition: none;
 }
 
 .nav-menu ul li a {
