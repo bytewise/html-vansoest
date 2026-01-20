@@ -55,6 +55,24 @@
                       <li><a href="renovatie.html">Renovatie</a></li>
                       <li><a href="nieuwbouw.html">Nieuwbouw</a></li>
                     </ul>
+                    <script>
+                      // Highlight active nav item by adding 'menu-active' class to matching link
+                      (function(){
+                        try{
+                          var path = location.pathname.split('/').pop() || 'index.html';
+                          var name = path === '' ? 'index.html' : path;
+                          var links = document.querySelectorAll('.nav-menu a');
+                          for(var i=0;i<links.length;i++){
+                            var a = links[i];
+                            var href = a.getAttribute('href');
+                            if(!href) continue;
+                            if(href === name || href === ('./'+name) || (name==='index.html' && href==='index.html')){
+                              a.classList.add('menu-active');
+                            }
+                          }
+                        }catch(e){console.warn(e)}
+                      })();
+                    </script>
                   </div>
                 </div>
               </div>
