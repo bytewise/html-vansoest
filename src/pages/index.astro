@@ -34,7 +34,7 @@ import { Picture } from '@astrojs/image/components'
     <div class="row d-flex justify-content-center">
       <div class="menu-content pb-60 col-lg-8">
         <div class="title text-center">
-          <h1 class="mb-10">Onze diensten</h1>
+          <h2 class="mb-10">Onze diensten</h2>
           <p>Wat kunnen wij voor u betekenen.</p>
         </div>
       </div>
@@ -53,7 +53,7 @@ import { Picture } from '@astrojs/image/components'
             aspectRatio={1400/934}
             alt="Aan/verbouw"
           />
-          <a href="/aan-verbouw/"><h4 class="pt-20 pb-20">Aan/verbouw</h4></a>
+          <a href="/aan-verbouw/"><h2 class="pt-20 pb-20">Aan/verbouw</h2></a>
           <p>Heeft u plannen om uw woning uit te breiden of te verbouwen? Dan bent u bij Van Soest Bouw aan het juiste adres.</p>
           <a href="/aan-verbouw/" class="primary-btn text-uppercase">Lees meer</a>
         </div>
@@ -71,7 +71,7 @@ import { Picture } from '@astrojs/image/components'
             aspectRatio={1400/934}
             alt="Renovatie"
           />
-          <a href="/renovatie/"><h4 class="pt-20 pb-20">Renovatie</h4></a>
+          <a href="/renovatie/"><h2 class="pt-20 pb-20">Renovatie</h2></a>
           <p>Van Soest Bouw biedt u vele mogelijkheden bij het bouwen van een eigen woning.</p>
           <a href="/renovatie/" class="primary-btn text-uppercase">Lees meer</a>
         </div>
@@ -89,7 +89,7 @@ import { Picture } from '@astrojs/image/components'
               aspectRatio={1400/934}
               alt="Nieuwbouw"
             />
-          <a href="/nieuwbouw/"><h4 class="pt-20 pb-20">Nieuwbouw</h4></a>
+          <a href="/nieuwbouw/"><h2 class="pt-20 pb-20">Nieuwbouw</h2></a>
           <p>Heeft u een verouderd pand dat geheel of gedeeltelijk aan een opknapbeurt toe is? Dan heeft u en kundig advies nodig.</p>
           <a href="/nieuwbouw/" class="primary-btn text-uppercase">Lees meer</a>
         </div>
@@ -98,5 +98,34 @@ import { Picture } from '@astrojs/image/components'
   </div>
 </section>
 <!-- End offered Area -->
+
+<!-- start contact Area -->
+<section class="contact-area section-gap" id="contact">
+  <div class="container">
+      <div class="row d-flex justify-content-center">
+          <div class="menu-content pb-30 col-lg-8">
+              <div class="title text-center">
+                  <h2 class="mb-10">Neem contact met ons op</h2>
+              </div>
+          </div>
+      </div>
+      <form name="contact" class="form-area mt-60" method="POST" action="/pages/bedankt" netlify>
+          <div class="row">
+              <div class="col-lg-6 form-group">
+                  <input type="text" id="contact_name" name="name" required="required" placeholder="Naam" class="common-input mb-20 form-control">
+                  <input type="text" id="contact_email" name="email" required="required" placeholder="E-mail" class="common-input mb-20 form-control">
+                  <input type="text" id="contact_subject" name="subject" placeholder="Onderwerp" class="common-input mb-20 form-control">
+              </div>
+              <div class="col-lg-6 form-group">
+                  <textarea id="contact_message" name="message" required="required" placeholder="Bericht" class="common-textarea mt-10 common-input mb-20 form-control"></textarea>
+                  <div>
+                      <button type="submit" id="contact_submit">Verstuur</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+</section>
+<!-- end contact Area -->
 
 </Base>
