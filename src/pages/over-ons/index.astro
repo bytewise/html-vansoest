@@ -1,8 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro'
+import { Picture } from '@astrojs/image/components'
 ---
 <Base title="Over ons | van Soest bouw">
-<section class="generic-banner relative" style="background-image: url(/thumbs/1440x640c/2018-11/nieuwbouw.jpg)">
+<section class="generic-banner relative">
+    <Picture
+        class="banner-bg"
+        aspectRatio={1400/910}
+        src="/assets/img/header-bg.jpg"
+        formats={['avif', 'webp', 'jpeg']}
+        widths={[400,800,1200,1800]}
+        alt="Over ons"
+    />
+    <div class="overlay-bg overlay"></div>
   <div class="container">
     <div class="row height align-items-center justify-content-center">
       <div class="col-lg-10">
@@ -23,9 +33,16 @@ import Base from '../../layouts/Base.astro'
           <p>Bij Van Soest Bouw staan uw eisen en wensen centraal. Daarbij beschikken we over gekwalificeerde partners voor de beste aanpak en uitvoering. Wij kunnen voor u het gehele bouwtraject begeleiden. Stucwerk, tegelwerk en timmerwerk gebeurd door onze vakbekwame partners. U heeft uw ideeën, plannen, wensen en dromen. Wij combineren die graag met onze kennis, vakmanschap en ervaring. Dat is wat wij u graag aanbieden.</p>
         </div>
         <div class="col-md-4">
-          <figure class="image">
-            <img src="/thumbs/640x360c/2018-11/nieuwbouw.jpg" class="img-fluid" alt="" />
-          </figure>
+          <Picture
+            class="img-fluid"
+            aspectRatio={1400/910}
+            src="/assets/img/header-bg.jpg"
+            formats={['avif', 'webp', 'jpeg']}
+            height={400}
+            widths={[400,600,800]}
+            aspectRatio={1400/934}
+            alt="Over ons"
+          />
         </div>
       </div>
     </div>

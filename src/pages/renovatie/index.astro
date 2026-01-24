@@ -1,8 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro'
+import { Picture } from '@astrojs/image/components'
 ---
 <Base title="Renovatie | van Soest bouw">
-<section class="generic-banner relative" style="background-image: url(/thumbs/1440x640c/2018-11/1542664422_renovatie.jpg)">
+<section class="generic-banner relative">
+    <Picture
+        class="banner-bg"
+        aspectRatio={1400/910}
+        src="/assets/img/renovatie.jpg"
+        formats={['avif', 'webp', 'jpeg']}
+        widths={[400,800,1200,1800]}
+        alt="Nieuwbouw"
+    />
+    <div class="overlay-bg overlay"></div>
   <div class="container">
     <div class="row height align-items-center justify-content-center">
       <div class="col-lg-10">
@@ -23,9 +33,16 @@ import Base from '../../layouts/Base.astro'
           <p>Heeft u een verouderd pand dat geheel of gedeeltelijk aan een opknapbeurt toe is? Dan heeft u en kundig advies nodig. Er is meestal veel professionele kennis nodig om een bestaand pand (gedeeltelijk) te renoveren. Zo zijn wij bijvoorbeeld op de hoogte van de hedendaagse veiligheidseisen, en materialen. Van Soest Bouw heeft deze kennis in huis en helpt u graag bij de renovatie van uw woning of bedrijfspand.</p>
         </div>
         <div class="col-md-4">
-          <figure class="image">
-            <img src="/thumbs/640x360c/2018-11/1542664422_renovatie.jpg" class="img-fluid" alt="" />
-          </figure>
+          <Picture
+            class="img-fluid"
+            aspectRatio={1400/910}
+            src="/assets/img/renovatie.jpg"
+            formats={['avif', 'webp', 'jpeg']}
+            height={400}
+            widths={[400,600,800]}
+            aspectRatio={1400/934}
+            alt="Renovatie"
+          />
         </div>
       </div>
     </div>

@@ -1,8 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro'
+import { Picture } from '@astrojs/image/components'
 ---
 <Base title="Nieuwbouw | van Soest bouw">
-<section class="generic-banner relative" style="background-image: url(/thumbs/1440x640c/2018-11/nieuwbouw.jpg)">
+<section class="generic-banner relative">
+    <Picture
+        class="banner-bg"
+        aspectRatio={1400/910}
+        src="/assets/img/header-bg.jpg"
+        formats={['avif', 'webp', 'jpeg']}
+        widths={[400,800,1200,1800]}
+        alt="Nieuwbouw"
+    />
+    <div class="overlay-bg overlay"></div>
   <div class="container">
     <div class="row height align-items-center justify-content-center">
       <div class="col-lg-10">
@@ -24,9 +34,16 @@ import Base from '../../layouts/Base.astro'
           <p>Van Soest Bouw bespreekt alles met u: van het ontwerp van de woning tot en met het gebruik van de materialen. Alles wat met bouwen te maken heeft komt aan bod. Dankzij Van Soest Bouw staat u er niet alleen voor de tijdens de bouw van uw woning!</p>
         </div>
         <div class="col-md-4">
-          <figure class="image">
-            <img src="/thumbs/640x360c/2018-11/nieuwbouw.jpg" class="img-fluid" alt="" />
-          </figure>
+          <Picture
+            class="img-fluid"
+            aspectRatio={1400/910}
+            src="/assets/img/header-bg.jpg"
+            formats={['avif', 'webp', 'jpeg']}
+            height={400}
+            widths={[400,600,800]}
+            aspectRatio={1400/934}
+            alt="Nieuwbouw"
+          />
         </div>
       </div>
     </div>

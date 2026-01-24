@@ -1,8 +1,19 @@
 ---
 import Base from '../../layouts/Base.astro'
+import { Picture } from '@astrojs/image/components'
 ---
 <Base title="Aan-/verbouw | van Soest bouw">
-<section class="generic-banner relative" style="background-image: url(/thumbs/1440x640c/2018-11/aan-verbouw.jpg)">
+<section class="generic-banner height relative">
+    <Picture
+        class="banner-bg"
+        aspectRatio={1400/910}
+        src="/assets/img/aan-verbouw.jpg"
+        formats={['avif', 'webp', 'jpeg']}
+        widths={[400,800,1200,1800]}
+        alt="Aan-/Verbouw"
+    />
+    <div class="overlay-bg overlay"></div>
+
   <div class="container">
     <div class="row height align-items-center justify-content-center">
       <div class="col-lg-10">
@@ -23,9 +34,16 @@ import Base from '../../layouts/Base.astro'
           <p>Heeft u plannen om uw woning uit te breiden of te verbouwen? Dan bent u bij Van Soest Bouw aan het juiste adres. Van Soest Bouw heeft ruime ervaring in het aanbouwen van bijvoorbeeld een serre, bijkeuken of garage. Ook de verbouw van uw badkamer, keuken of woonkamer kunt u met een gerust hart aan hen overlaten. Door hun jarenlange ervaring bent u verzekerd van professioneel inzicht en vernieuwende ideeën.</p>
         </div>
         <div class="col-md-4">
-          <figure class="image">
-            <img src="/thumbs/640x360c/2018-11/aan-verbouw.jpg" class="img-fluid" alt="" />
-          </figure>
+          <Picture
+            class="img-fluid"
+            aspectRatio={1400/910}
+            src="/assets/img/aan-verbouw.jpg"
+            formats={['avif', 'webp', 'jpeg']}
+            height={400}
+            widths={[400,600,800]}
+            aspectRatio={1400/934}
+            alt="Aan/verbouw"
+          />
         </div>
       </div>
     </div>
