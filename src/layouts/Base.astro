@@ -12,7 +12,10 @@ const { title = 'van Soest bouw' } = Astro.props;
   <meta name="description" content="">
   <meta name="keywords" content="">
   <title>{title}</title>
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="preload" as="style" onload="this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"></noscript>
 
       <!-- Favicon -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -23,12 +26,15 @@ const { title = 'van Soest bouw' } = Astro.props;
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/linearicons.css">
-  <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/assets/css/bootstrap.css">
+  <link rel="preload" href="/assets/css/font-awesome.min.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/assets/css/font-awesome.min.css"></noscript>
+  <link rel="preload" href="/assets/css/bootstrap.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/assets/css/bootstrap.css"></noscript>
   <link rel="stylesheet" href="/assets/css/nice-select.css">
   <link rel="stylesheet" href="/assets/css/animate.min.css">
   <link rel="stylesheet" href="/assets/css/owl.carousel.css">
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="preload" href="/assets/css/main.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
   <ViewTransitions fallback="animate" />
 </head>
 <body>
@@ -171,19 +177,19 @@ const { title = 'van Soest bouw' } = Astro.props;
   </footer>
 
   <!-- Scripts -->
-  <script is:inline src="/assets/js/vendor/jquery-2.2.4.min.js"></script>
-  <script is:inline src="/assets/js/vendor/popper.min.js"></script>
-  <script is:inline src="/assets/js/vendor/bootstrap.min.js"></script>
-  <script is:inline src="/assets/js/hoverIntent.js"></script>
-  <script is:inline src="/assets/js/superfish.min.js"></script>
-  <script is:inline src="/assets/js/jquery.ajaxchimp.min.js"></script>
-  <script is:inline src="/assets/js/owl.carousel.min.js"></script>
-  <script is:inline src="/assets/js/jquery.sticky.js"></script>
-  <script is:inline src="/assets/js/jquery.nice-select.min.js"></script>
-  <script is:inline src="/assets/js/parallax.min.js"></script>
-  <script is:inline src="/assets/js/waypoints.min.js"></script>
-  <script is:inline src="/assets/js/jquery.counterup.min.js"></script>
-  <script is:inline src="/assets/js/mail-script.js"></script>
-  <script is:inline src="/assets/js/main.js"></script>
+  <script is:inline src="/assets/js/vendor/jquery-2.2.4.min.js" defer></script>
+  <script is:inline src="/assets/js/vendor/popper.min.js" defer></script>
+  <script is:inline src="/assets/js/vendor/bootstrap.min.js" defer></script>
+  <script is:inline src="/assets/js/hoverIntent.js" defer></script>
+  <script is:inline src="/assets/js/superfish.min.js" defer></script>
+  <script is:inline src="/assets/js/jquery.ajaxchimp.min.js" defer></script>
+  <script is:inline src="/assets/js/owl.carousel.min.js" defer></script>
+  <script is:inline src="/assets/js/jquery.sticky.js" defer></script>
+  <script is:inline src="/assets/js/jquery.nice-select.min.js" defer></script>
+  <script is:inline src="/assets/js/parallax.min.js" defer></script>
+  <script is:inline src="/assets/js/waypoints.min.js" defer></script>
+  <script is:inline src="/assets/js/jquery.counterup.min.js" defer></script>
+  <script is:inline src="/assets/js/mail-script.js" defer></script>
+  <script is:inline src="/assets/js/main.js" defer></script>
   </body>
 </html>
