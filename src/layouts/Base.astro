@@ -135,7 +135,7 @@ const { title = 'van Soest bouw' } = Astro.props;
                 </div>
             </div>
         </div>
-        <form name="contact" class="form-area mt-60" netlify>
+        <form name="contact" class="form-area mt-60" method="POST" action="/pages/bedankt" netlify>
             <div class="row">
                 <div class="col-lg-6 form-group">
                     <input type="text" id="contact_name" name="name" required="required" placeholder="Naam" class="common-input mb-20 form-control">
