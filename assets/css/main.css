@@ -1948,6 +1948,8 @@ h6 {
 @media (max-width: 673px) {
   #logo {
     margin-left: 20px;
+    width: 80px;
+
   }
 }
 
@@ -3003,9 +3005,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 @media (max-width: 767.98px) {
-  .generic-banner .height {
+  /*.generic-banner .height {
     height: 300px;
-  }
+  }*/
 }
 
 .generic-banner .generic-banner-content h2 {

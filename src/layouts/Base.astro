@@ -30,9 +30,7 @@ const { title = 'van Soest bouw' } = Astro.props;
     <noscript><link rel="stylesheet" href="/assets/css/font-awesome.min.css"></noscript>
   <link rel="preload" href="/assets/css/bootstrap.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/assets/css/bootstrap.css"></noscript>
-  <link rel="stylesheet" href="/assets/css/nice-select.css">
   <link rel="stylesheet" href="/assets/css/animate.min.css">
-  <link rel="stylesheet" href="/assets/css/owl.carousel.css">
   <link rel="preload" href="/assets/css/main.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
   <ViewTransitions fallback="animate" />
@@ -40,7 +38,7 @@ const { title = 'van Soest bouw' } = Astro.props;
 <body>
 
   <header role="banner" class="header">
-<button type="button" id="mobile-nav-toggle" aria-label="Open navigation" aria-expanded="false"><i class="lnr lnr-menu" aria-hidden="true"></i></button>
+<!-- mobile-nav-toggle button is injected by JS to ensure consistent behaviour across pages -->
     <header id="header" id="home">
       <div class="container">
         <div class="row align-items-center justify-content-between d-flex">
@@ -181,15 +179,7 @@ const { title = 'van Soest bouw' } = Astro.props;
   <script is:inline src="/assets/js/vendor/popper.min.js" defer></script>
   <script is:inline src="/assets/js/vendor/bootstrap.min.js" defer></script>
   <script is:inline src="/assets/js/hoverIntent.js" defer></script>
-  <script is:inline src="/assets/js/superfish.min.js" defer></script>
-  <script is:inline src="/assets/js/jquery.ajaxchimp.min.js" defer></script>
-  <script is:inline src="/assets/js/owl.carousel.min.js" defer></script>
   <script is:inline src="/assets/js/jquery.sticky.js" defer></script>
-  <script is:inline src="/assets/js/jquery.nice-select.min.js" defer></script>
-  <script is:inline src="/assets/js/parallax.min.js" defer></script>
-  <script is:inline src="/assets/js/waypoints.min.js" defer></script>
-  <script is:inline src="/assets/js/jquery.counterup.min.js" defer></script>
-  <script is:inline src="/assets/js/mail-script.js" defer></script>
   <script is:inline src="/assets/js/main.js" defer></script>
   </body>
 </html>
