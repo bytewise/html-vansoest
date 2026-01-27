@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import { Image } from '@astrojs/image/components';
+import Navigation from '../components/Navigation.astro';
 const { title = 'van Soest bouw' } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -13,11 +14,11 @@ const { title = 'van Soest bouw' } = Astro.props;
   <meta name="keywords" content="">
   <title>{title}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="preload" as="style" onload="this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"></noscript>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="preload" as="style" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"></noscript>
 
-      <!-- Favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -25,12 +26,10 @@ const { title = 'van Soest bouw' } = Astro.props;
   <link rel="manifest" href="/site.webmanifest" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="/assets/css/linearicons.css">
   <link rel="preload" href="/assets/css/font-awesome.min.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/assets/css/font-awesome.min.css"></noscript>
   <link rel="preload" href="/assets/css/bootstrap.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/assets/css/bootstrap.css"></noscript>
-  <link rel="stylesheet" href="/assets/css/animate.min.css">
   <link rel="preload" href="/assets/css/main.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
   <ViewTransitions fallback="animate" />
@@ -38,7 +37,12 @@ const { title = 'van Soest bouw' } = Astro.props;
 <body>
 
   <header role="banner" class="header">
-<!-- mobile-nav-toggle button is injected by JS to ensure consistent behaviour across pages -->
+    <button class="navbar-burger" data-target="navbar-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
     <header id="header" id="home">
       <div class="container">
         <div class="row align-items-center justify-content-between d-flex">
@@ -99,31 +103,7 @@ const { title = 'van Soest bouw' } = Astro.props;
             </a>
           </div>
 
-          <nav id="nav-menu-container">
-            <div class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
-              <div class="container">
-                <div class="navbar-brand">
-                  <span class="navbar-burger" data-target="navbar-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </span>
-                </div>
-
-                <div class="navbar-menu" id="navbar-toggle">
-                  <div class="navbar-start">
-                    <ul class="nav-menu">
-                        <li class:list={{ "menu-active": Astro.url.pathname === '/' }}><a href="/" class="first">Home</a></li>
-                        <li class:list={{ "menu-active": Astro.url.pathname.startsWith('/over-ons') }}><a href="/over-ons/">Over ons</a></li>
-                        <li class:list={{ "menu-active": Astro.url.pathname.startsWith('/aan-verbouw') }}><a href="/aan-verbouw/">Aan/verbouw</a></li>
-                        <li class:list={{ "menu-active": Astro.url.pathname.startsWith('/renovatie') }}><a href="/renovatie/">Renovatie</a></li>
-                        <li class:list={{ "menu-active": Astro.url.pathname.startsWith('/nieuwbouw') }}><a href="/nieuwbouw/">Nieuwbouw</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </nav>
+          <Navigation />
 
         </div>
       </div>
