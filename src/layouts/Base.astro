@@ -33,20 +33,6 @@ const { title = 'van Soest bouw' } = Astro.props;
   <link rel="preload" href="/assets/css/main.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
   <ViewTransitions fallback="animate" />
-  <!-- Matomo -->
-  <script is:inline>
-     var _paq = window._paq = window._paq || [];
-     _paq.push(['trackPageView']);
-     _paq.push(['enableLinkTracking']);
-     (function() {
-       var u="//analytics.bytewise.nl/";
-       _paq.push(['setTrackerUrl', u+'matomo.php']);
-       _paq.push(['setSiteId', '9']);
-       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-       g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-     })();
-   </script>
-  <!-- End Matomo Code -->
 </head>
 <body>
 
@@ -172,7 +158,6 @@ const { title = 'van Soest bouw' } = Astro.props;
   <!-- <script is:inline src="/assets/js/vendor/bootstrap.min.js" defer></script> -->
   <!-- <script is:inline src="/assets/js/hoverIntent.js" defer></script> -->
   <!-- <script is:inline src="/assets/js/jquery.sticky.js" defer></script> -->
-  <script is:inline src="/assets/js/matamo.js" defer></script>
   <script is:inline src="/assets/js/main.js" defer></script>
-  </body>``
+  </body>
 </html>
