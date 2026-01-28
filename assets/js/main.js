@@ -1,6 +1,8 @@
 
-$(document).ready(function() {
-  "use strict";
+(function(){
+  // keep existing document.ready behaviour
+  $(document).ready(function() {
+    "use strict";
 
   var window_width = $(window).width(),
     window_height = window.innerHeight,
@@ -15,99 +17,6 @@ $(document).ready(function() {
   if (document.getElementById("default-select")) {
     $('select').niceSelect();
   };
-
-
-
-
-  // Mobile Navigation - encapsulated init and safe binding
-  function initMobileNav() {
-    if (!$('#nav-menu-container').length) return;
-    if ($('#mobile-nav').length) return; // already initialized
-
-    var $mobile_nav = $('#nav-menu-container').clone().prop({ id: 'mobile-nav' });
-    $mobile_nav.find('> ul').attr({ 'class': '', 'id': '' });
-    $('body').append($mobile_nav);
-    if ($('#mobile-nav-toggle').length === 0) {
-      $('body').prepend('<button type="button" id="mobile-nav-toggle" aria-label="Open navigation" aria-expanded="false"><i class="lnr lnr-menu" aria-hidden="true"></i></button>');
-    }
-    $('body').append('<div id="mobile-body-overly"></div>');
-    $('#mobile-nav').find('.menu-has-children').prepend('<i class="lnr lnr-chevron-down"></i>');
-
-    // delegated handlers to avoid duplicate bindings
-    $(document).off('click', '.menu-has-children i').on('click', '.menu-has-children i', function(e) {
-      $(this).next().toggleClass('menu-item-active');
-      $(this).nextAll('ul').eq(0).slideToggle();
-      $(this).toggleClass("lnr-chevron-up lnr-chevron-down");
-    });
-
-    $(document).off('click', '#mobile-nav-toggle').on('click', '#mobile-nav-toggle', function(e) {
-      $('body').toggleClass('mobile-nav-active');
-      var expanded = $('#mobile-nav-toggle').attr('aria-expanded') === 'true';
-      $('#mobile-nav-toggle').attr('aria-expanded', (!expanded).toString());
-      $('#mobile-nav-toggle i').toggleClass('lnr-cross lnr-menu');
-      $('#mobile-body-overly').toggle();
-    });
-
-    $(document).off('click.mobileNavClose').on('click.mobileNavClose', function(e) {
-      var container = $("#mobile-nav, #mobile-nav-toggle");
-      if (!container.is(e.target) && container.has(e.target).length === 0) {
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('#mobile-nav-toggle').attr('aria-expanded', 'false');
-          $('#mobile-nav-toggle i').toggleClass('lnr-cross lnr-menu');
-          $('#mobile-body-overly').hide();
-        }
-      }
-    });
-  }
-
-  // initial call
-  initMobileNav();
-
-  // Re-init when nav container is added/changed (e.g., different pages without full reload)
-  var observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(m) { if (m.addedNodes && m.addedNodes.length) initMobileNav(); });
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
-
-  // fallback
-  window.addEventListener('load', initMobileNav);
-
-  // Smooth scroll for the menu and links with .scrollto classes
-  $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      if (target.length) {
-        var top_space = 0;
-
-        if ($('#header').length) {
-          top_space = $('#header').outerHeight();
-
-          if (!$('#header').hasClass('header-fixed')) {
-            top_space = top_space;
-          }
-        }
-
-        $('html, body').animate({
-          scrollTop: target.offset().top - top_space
-        }, 1500, 'easeInOutExpo');
-
-        if ($(this).parents('.nav-menu').length) {
-          $('.nav-menu .menu-active').removeClass('menu-active');
-          $(this).closest('li').addClass('menu-active');
-        }
-
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('#mobile-nav-toggle').attr('aria-expanded', 'false');
-          $('#mobile-nav-toggle i').toggleClass('lnr-times lnr-bars');
-          $('#mobile-body-overly').hide();
-        }
-        return false;
-      }
-    }
-  });
-
 
   // Header scroll class
   $(window).scroll(function() {
@@ -134,3 +43,108 @@ $(document).ready(function() {
 
 
 });
+
+// initMenu: idempotent initializer for mobile navbar toggle (works with Astro client navigations)
+function initMenu(){
+  // quick guard to avoid noisy errors
+  try {
+    var btns = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'));
+    var nav = document.getElementById('nav-menu-container');
+
+    // If nav or buttons are not present yet, poll a few times to wait for late DOM insertion
+    if (!nav || btns.length === 0) {
+      var pollKey = '__astroNavPoll';
+      if (!window[pollKey]) window[pollKey] = { attempts: 0, timer: null };
+      if (window[pollKey].attempts >= 20) return; // give up after ~3s
+      window[pollKey].attempts += 1;
+      clearTimeout(window[pollKey].timer);
+      window[pollKey].timer = setTimeout(function(){ initMenu(); }, 150);
+      return;
+    }
+    // if we succeeded, clear any poll state
+    if (window.__astroNavPoll){ clearTimeout(window.__astroNavPoll.timer); window.__astroNavPoll = null; }
+
+    if (nav.dataset.menuInit === '1') return;
+    // remove data-cloak so nav becomes visible after JS initializes
+    if(nav.hasAttribute('data-cloak')) nav.removeAttribute('data-cloak');
+
+    // ensure overlay exists
+    var overlay = document.getElementById('mobile-body-overly');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'mobile-body-overly';
+      overlay.style.display = 'none';
+      document.body.appendChild(overlay);
+    }
+
+    function closeAll(){
+      nav.classList.remove('open');
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+      btns.forEach(function(b){ b.classList.remove('is-active'); b.setAttribute('aria-expanded','false'); });
+    }
+
+    overlay.addEventListener('click', closeAll);
+
+    btns.forEach(function(btn){
+      btn.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var isOpen = nav.classList.toggle('open');
+        btn.classList.toggle('is-active', isOpen);
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        overlay.style.display = isOpen ? 'block' : 'none';
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+    });
+
+    if (!window.__astroNavEscAdded) {
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
+      window.__astroNavEscAdded = true;
+    }
+
+    nav.dataset.menuInit = '1';
+  } catch (err) {
+    console.error('initMenu error', err);
+  }
+}
+
+// observe body for late additions of #nav-menu-container (catch cases where layout is replaced after init)
+(function(){
+  if (!window.__astroNavObserverAdded){
+    var body = document.body;
+    if(!body) return;
+    var obs = new MutationObserver(function(muts){
+      muts.forEach(function(mu){
+        if(mu.addedNodes && mu.addedNodes.length){
+          for(var i=0;i<mu.addedNodes.length;i++){
+            var n = mu.addedNodes[i];
+            if(n.nodeType===1){
+              if(n.id === 'nav-menu-container' || n.querySelector && n.querySelector('#nav-menu-container')){
+                setTimeout(initMenu, 50);
+                return;
+              }
+            }
+          }
+        }
+      });
+    });
+    obs.observe(document.documentElement || document.body, { childList: true, subtree: true });
+    window.__astroNavObserverAdded = true;
+  }
+})();
+
+// initialize on first load and re-init after Astro client page loads
+function scheduleInit(){
+  initMenu();
+  // retry a few times to catch late DOM mutations (e.g., after hydration)
+  [100,300,800].forEach(function(ms){ setTimeout(initMenu, ms); });
+}
+document.addEventListener('DOMContentLoaded', scheduleInit);
+document.addEventListener('astro:page-load', function(){ if(document.getElementById('nav-menu-container')) document.getElementById('nav-menu-container').dataset.menuInit = ''; scheduleInit(); });
+window.addEventListener('load', scheduleInit);
+window.addEventListener('resize', function(){ setTimeout(initMenu, 100); });
+// call once immediately
+scheduleInit();
+
+})();
