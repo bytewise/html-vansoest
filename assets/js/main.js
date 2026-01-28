@@ -65,6 +65,8 @@ function initMenu(){
     if (window.__astroNavPoll){ clearTimeout(window.__astroNavPoll.timer); window.__astroNavPoll = null; }
 
     if (nav.dataset.menuInit === '1') return;
+    // remove data-cloak so nav becomes visible after JS initializes
+    if(nav.hasAttribute('data-cloak')) nav.removeAttribute('data-cloak');
 
     // ensure overlay exists
     var overlay = document.getElementById('mobile-body-overly');
