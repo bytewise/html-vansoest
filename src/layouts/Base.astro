@@ -31,6 +31,16 @@ const { title = 'van Soest bouw' } = Astro.props;
   <link rel="preload" href="/assets/css/main.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
   <ViewTransitions fallback="animate" />
+  <style data-critical="hero-header">/* Critical CSS: header + hero */
+    .header{position:relative;z-index:5}
+    .banner-area{position:relative;overflow:hidden;min-height:60vh;height:60vh}
+    .banner-area .banner-bg, .banner-area picture{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+    .banner-area img, .banner-area picture img{width:100%;height:100%;object-fit:cover;display:block}
+    .banner-area .overlay{position:absolute;inset:0;z-index:1;background:#5A5A5A;opacity:.65}
+    .banner-content{position:relative;z-index:2;text-align:center;color:#fff}
+    .banner-content h1{font-size:2.5rem;margin:0}
+    @media(min-width:992px){.banner-area{height:100vh}}
+  </style>
 </head>
 <body>
 
