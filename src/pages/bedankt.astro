@@ -6,10 +6,12 @@ import { Picture } from '@astrojs/image/components'
 <section class="generic-banner relative">
     <Picture
         class="banner-bg"
-        aspectRatio={1400/910}
         src="/assets/img/header-bg.jpg"
         formats={['avif', 'webp', 'jpeg']}
         widths={[400,800,1200,1800]}
+        width={1400}
+        height={910}
+        aspectRatio={1400/910}
         alt="Over ons"
     />
     <div class="overlay-bg overlay"></div>

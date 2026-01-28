@@ -6,11 +6,13 @@ import { Picture } from '@astrojs/image/components'
 <section class="generic-banner height relative">
     <Picture
         class="banner-bg"
-        aspectRatio={1400/910}
         src="/assets/img/aan-verbouw.jpg"
         formats={['avif', 'webp', 'jpeg']}
         widths={[400,800,1200,1800]}
         alt="Aan-/Verbouw"
+        width={1400}
+        height={910}
+        aspectRatio={4/1}
     />
     <div class="overlay-bg overlay"></div>
 
@@ -36,12 +38,12 @@ import { Picture } from '@astrojs/image/components'
         <div class="col-md-4">
           <Picture
             class="img-fluid"
-            aspectRatio={1400/910}
             src="/assets/img/aan-verbouw.jpg"
             formats={['avif', 'webp', 'jpeg']}
-            height={400}
             widths={[400,600,800]}
-            aspectRatio={1400/934}
+            width={1400}
+            height={400}
+            aspectRatio={35/23}
             alt="Aan/verbouw"
           />
         </div>
