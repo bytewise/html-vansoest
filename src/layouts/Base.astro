@@ -2,7 +2,7 @@
 import { ViewTransitions } from 'astro:transitions';
 import { Image } from '@astrojs/image/components';
 import Navigation from '../components/Navigation.astro';
-const { title = 'van Soest bouw' } = Astro.props;
+const { title = 'van Soest bouw', description = 'Van Soest Bouw — vakbekwaam bouwen, renoveren en verbouwen. Neem contact op voor een vrijblijvende offerte.' } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="nl-NL" class="no-js">
@@ -10,7 +10,7 @@ const { title = 'van Soest bouw' } = Astro.props;
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="author" content="codepixer">
-  <meta name="description" content="">
+  <meta name="description" content="{description}">
   <meta name="keywords" content="">
   <title>{title}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
