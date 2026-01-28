@@ -35,6 +35,7 @@ function initMenu() {
       nav.classList.remove('open');
       overlay.style.display = 'none';
       document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
       btns.forEach(function(b) { b.classList.remove('is-active'); b.setAttribute('aria-expanded', 'false'); });
     }
 
@@ -51,7 +52,14 @@ function initMenu() {
         btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         btn.setAttribute('aria-label', isOpen ? 'Sluit navigatie' : 'Open navigatie');
         overlay.style.display = isOpen ? 'block' : 'none';
-        document.body.style.overflow = isOpen ? 'hidden' : '';
+        if (isOpen) {
+          var scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+          if (scrollbarWidth > 0) document.body.style.paddingRight = scrollbarWidth + 'px';
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+          document.body.style.paddingRight = '';
+        }
       });
     });
 
