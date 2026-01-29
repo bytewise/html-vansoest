@@ -411,8 +411,25 @@ h4 {
     outline:0 !important;
 }
 
+.navbar-burger .open {
+    display: block;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
 .navbar-burger .close {
-    display:none;
+    display: none;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.navbar-burger.is-active .open {
+    display: none;
+    opacity: 0;
+    transform: scale(0.9);
+}
+.navbar-burger.is-active .close {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
 }
 
 

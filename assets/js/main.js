@@ -48,6 +48,7 @@ function initMenu() {
       btn.addEventListener('click', function(e) {
         e.preventDefault();
         var isOpen = nav.classList.toggle('open');
+        // only toggle class on button; CSS handles SVG swap
         btn.classList.toggle('is-active', isOpen);
         btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         btn.setAttribute('aria-label', isOpen ? 'Sluit navigatie' : 'Open navigatie');
